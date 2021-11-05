@@ -1,9 +1,12 @@
-const express = require('express');
-const app = express.Router();
+"use strict";
 
-const ctrl = require('./home.ctrl.js');
+const express = require("express");
+const router = express.Router();
 
-router.get('/',ctrl.output.index);
-router.get('/login',ctrl.output.login);
+const ctrl = require("./home.ctrl");
+
+router.get("/", ctrl.output.home);
+router.get("/login", ctrl.output.login);
+router.post("/login", ctrl.process.login);
 
 module.exports = router;

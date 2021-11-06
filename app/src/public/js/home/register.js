@@ -1,16 +1,19 @@
 const id = document.querySelector("#id"),
+      name = document.querySelector("#name"),
       pw = document.querySelector("#pw"),
-      loginBtn = document.querySelector("#button");
+      confirmPw = document.querySelector("#confirm-pw"),
+      registerBtn = document.querySelector("#button");
+registerBtn.addEventListener("click", register);
 
-loginBtn.addEventListener("click", login);
-
-function login() {
+function register() {
   const req = {
     id: id.value,
+    name: name.value,
     pw: pw.value,
+    confirmPw: confirmPw.value,
   };
 
-  fetch("/login", {
+  fetch("/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -20,7 +23,7 @@ function login() {
     .then((res) => res.json())
     .then((res) => {
       if (res.success) {
-        location.href = "/";
+        location.href = "/login";
       } else {
         alert(res.msg);
       }

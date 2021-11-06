@@ -3,7 +3,7 @@ class UserStorage {
    static #users = {
       id: ["참치", "고등어", "홍길동"],
       pw: ["1234", "1234", "123456"],
-      name: ['니모','도리','길동좌'],
+      name: ['니모', '도리', '길동좌'],
    };
 
    static getUsers(...fields) {
@@ -16,7 +16,18 @@ class UserStorage {
       }, {});
       return newUsers;
    }
-   
+
+   static getUserInfo(id) {
+      const users = this.#users;
+      const idx = users.id.indexOf(id);
+      const usersKeys = Object.keys(users);  // => [id, pw, name]
+      const userInfo = usersKeys.reduce((newUser, info)=>{
+         newUser[info] = users[info][idx];
+         return newUser;
+      }, {});
+
+      return userInfo;
+   }
 }
 
 module.exports = UserStorage;

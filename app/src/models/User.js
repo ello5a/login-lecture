@@ -19,14 +19,12 @@ class User {
   }
   async register() {
     const client = this.body;
-    try{
+    try {
       const response = await UserStorage.save(client);
       return response;
     } catch (err) {
-      const a = { success: false, msg: err };
-      console.log(typeof a.msg);
-      return a;
-    }    
+      return { success: false, msg: err };
+    }  
   } 
 }
 

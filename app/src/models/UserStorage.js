@@ -4,7 +4,7 @@ class UserStorage {
   static #getUserInfo(data, id) {
     const users = JSON.parse(data);
     const idx = users.id.indexOf(id);
-    const usersKeys = Object.keys(users); // => [id, pw, name]
+    const usersKeys = Object.keys(users); // => [id, pw, name, email]
     const userInfo = usersKeys.reduce((newUser, info) => {
       newUser[info] = users[info][idx];
       return newUser;
@@ -52,6 +52,7 @@ class UserStorage {
     }
     users.id.push(userInfo.id);
     users.name.push(userInfo.name);
+    users.email.push(userInfo.email);
     users.pw.push(userInfo.pw);
     fs.writeFile('./src/databases/users.json', JSON.stringify(users));
     return { success: true };
